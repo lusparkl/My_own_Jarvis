@@ -1,0 +1,2 @@
+# Hello There! It's first commit here, I'll try to update this readme as I go, but I can't promise hehe
+ - Currently I only have real time voice-to-text converter, probably tommorow I'll continue on my code and add some wake word functional and also optimize my buddy a little.
