@@ -37,7 +37,7 @@ def start_transcribing():
                 continue
             since_last_decode = 0
 
-            segments, info = model.transcribe(
+            segments, _ = model.transcribe(
                 rolling,
                 beam_size=1,
                 vad_filter=True,
