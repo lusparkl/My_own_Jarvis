@@ -3,6 +3,7 @@ import sounddevice as sd
 from services.models import build_transcriber
 from audio.input.audio_callbacks import t_audio_callback, t_audio_q
 from config import (SAMPLE_RATE_HZ, BLOCK_SEC, WINDOW_SEC, STEP_SEC)
+from services.stabilize_transcription import stabilize_transcription
 import logging
 
 logger = logging.getLogger(__name__)
@@ -15,7 +16,8 @@ def start_transcribing():
 
     rolling = np.zeros(0, dtype=np.float32)
     since_last_decode = 0
-    last_printed = ""
+    committed_text=""
+    st_window=[]
 
     logger.info("Listening to transcribe...")
     with sd.InputStream(
@@ -44,8 +46,6 @@ def start_transcribing():
                 condition_on_previous_text=False
             )
 
-            text = " ".join(seg.text.strip() for seg in segments).strip()
-            if text and text != last_printed:
-                print(text)
-                last_printed=text
+            new_chunk, committed_text = stabilize_transcription(segments, committed_text, st_window)
+
 

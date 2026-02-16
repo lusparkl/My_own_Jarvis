@@ -13,6 +13,7 @@ ENDPOINT_SILENCE_MS=650
 WHISPER_MODEL = "D:/tech_stuff/coding/ai_models/huggingface_cache/hub/models--Systran--faster-distil-whisper-large-v3/snapshots/c3058b475261292e64a0412df1d2681c06260fab"
 WHISPER_COMPUTE_TYPE = "float16"
 WHISPER_DEVICE = "cuda"
+TRANSCRIBTION_STAB_WINDOW = 3
 
 #Logging
 LOG_LEVEL="INFO"
