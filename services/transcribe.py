@@ -1,18 +1,18 @@
 import numpy as np
 import sounddevice as sd
-from services.models import build_transcriber
 from audio.input.audio_callbacks import t_audio_callback, t_audio_q
+from audio.utils import capture_silence
 from config import (SAMPLE_RATE_HZ, BLOCK_SEC, WINDOW_SEC, STEP_SEC)
 from services.stabilize_transcription import stabilize_transcription
 import logging
 
+
 logger = logging.getLogger(__name__)
 
-def start_transcribing():
+def start_transcribing(model):
     block_samples = int(SAMPLE_RATE_HZ * BLOCK_SEC)
     window_samples = int(SAMPLE_RATE_HZ * WINDOW_SEC)
     step_samples = int(SAMPLE_RATE_HZ * STEP_SEC)
-    model = build_transcriber()
 
     rolling = np.zeros(0, dtype=np.float32)
     since_last_decode = 0
@@ -47,5 +47,8 @@ def start_transcribing():
             )
 
             new_chunk, committed_text = stabilize_transcription(segments, committed_text, st_window)
+
+            if  capture_silence(st_window):
+                pass
 
 

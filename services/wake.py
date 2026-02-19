@@ -1,14 +1,12 @@
 import sounddevice as sd
-from services.models import build_wake_model
 from audio.input.audio_callbacks import w_audio_callback, w_audio_q
 from config import SAMPLE_RATE_HZ, WAKE_TRESHOLD, WAKE_BLOCK_SEC
 import logging
 
 logger = logging.getLogger(__name__)
 
-def wait_for_wake_word():
+def wait_for_wake_word(model):
     block_samples = int(SAMPLE_RATE_HZ * WAKE_BLOCK_SEC)
-    model = build_wake_model()
 
     logger.info("Listening to wake word...")
     with sd.InputStream(

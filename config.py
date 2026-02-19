@@ -19,8 +19,25 @@ TRANSCRIBTION_STAB_WINDOW = 3
 LOG_LEVEL="INFO"
 
 #LLM
-LLM_MAX_TOKENS=96
-LLM_TEMPERATURE=0.5
-MIN_STABLE_CHARS_FOR_LLM=24
-RESTART_SIMILARITY_THRESHOLD=0.88
-RESTART_COOLDOWN_MS=450
+# ...existing code...
+
+SYSTEM_PROMT = (
+    "You are Jarvis, created by lusparkl to help with tasks. "
+    "Respond in clear, natural spoken English for TTS. "
+    "Use plain text only: no markdown, no asterisks, no bullet points, no emojis, no extra blank lines. "
+    "Keep replies short, direct, and informative. "
+    "When math or symbols appear, rewrite them in words (for example: x squared, divided by, plus, minus, equals)."
+)
+
+# ...existing code...
+
+#TTS
+CHECKPOINT_DIR="C:/Users/flypy/AppData/Local/tts/tts_models--multilingual--multi-dataset--xtts_v2"
+REFERENCE_WAVS = ["D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_0.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_1.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_2.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_3.wav"]
+LANGUAGE="en"
+USE_DEEPSPEED=False
+XTTS_CONFIG_JSON=f"{CHECKPOINT_DIR}/config.json"
+LATENTS_CACHE="audio/output/speaker_latents.pt"
+OUTPUT_WAV="xtts_streaming.wav"
+CHUNKS_CHAR_LIMIT=250
+XTTS_DEVICE="cuda"
