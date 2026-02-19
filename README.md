@@ -1,7 +1,6 @@
 # Jarvis
-- Now we have "clean" project structure, wake word functional and also much more knowledge about audio..
-- Also we now have our "stable text" implementation as a service and it's connected to our transcribtion module. Now what I'm doing is finding a way to feed it to the AI model and how to make it fast
-
+- Now we have almost everything that we need for Jarvis, now I need to put it all together. I need to work on our bot memorizing our convos, so he'll be like real Jarvis. And last thing is how to end conversations, I don't want to do it on keyword cuz it's either some frequently usable or some cringe word, may be I'll make it as a tool, so Jarvis will end them by himself, or end them after 30 seconds of silence.
+- After everything that I wrote higher will come true I'll put all parts together and start on preparing for shiping this 0.1 version, but after this there will be tons of work on modifying it, so this project will be really long term.
 
 # Future Ideas
 ## It's block, where I'm writing all ideas that I'll probably add for Jarvis in the future.
