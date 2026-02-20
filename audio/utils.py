@@ -1,12 +1,5 @@
 from config import CHUNKS_CHAR_LIMIT
 
-def capture_silence(st_window: list) -> bool:
-    for step in st_window:
-        if len(step) > 0:
-            return False
-    
-    return True
-
 def list_get(list: list, i: int, default):
     return list[i] if i < len(list) else default
 
