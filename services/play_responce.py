@@ -1,8 +1,8 @@
 import queue
 import threading
 from audio.utils import cut_responce_to_text_chunks
-from audio.output.tts_chunk_creation import tts_stream_audio_chunks
-from audio.output.play_audio_chunks import play_streamed_audio_chunks_outputstream
+from audio.output import tts_stream_audio_chunks, play_streamed_audio_chunks_outputstream
+
 
 
 def dub_and_play_responce(tts, text):

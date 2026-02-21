@@ -33,6 +33,36 @@ def retrieve_memory(query: str):
       Chat history with user, that you can use to respond a question.
     """
    
-    res_db = collection.query(query_texts=[query])["documents"][0][0:10]
-    history = "".join(res_db).replace("\n", " ")
+    clean_query = (query or "").strip()
+    if not clean_query:
+        return "No relevant memory found."
+
+    res_db = collection.query(
+        query_texts=[clean_query],
+        n_results=5,
+        include=["documents", "distances"]
+    )
+
+    documents = res_db.get("documents", [[]])[0]
+    distances = res_db.get("distances", [[]])[0]
+
+    selected_docs = []
+    for doc, distance in zip(documents, distances):
+        if distance is not None and distance > 1.25:
+            continue
+
+        clean_doc = (doc or "").strip()
+        if clean_doc:
+            selected_docs.append(clean_doc)
+
+        if len(selected_docs) >= 3:
+            break
+
+    if not selected_docs:
+        return "No relevant memory found."
+
+    history = "\n\n".join(selected_docs).replace("\n", " ").strip()
+    if len(history) > 1500:
+        history = history[:1500].rstrip() + "..."
+
     return history

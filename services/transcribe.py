@@ -1,6 +1,7 @@
 import numpy as np
 import sounddevice as sd
-from audio.input.audio_callbacks import t_audio_callback, t_audio_q
+from queue import Empty
+from audio.input import t_audio_callback, t_audio_q
 from config import (
     SAMPLE_RATE_HZ,
     BLOCK_SEC,
@@ -13,6 +14,18 @@ from services.stabilize_transcription import stabilize_transcription, extract_st
 import logging
 
 logger = logging.getLogger(__name__)
+
+def clear_t_audio_q():
+    dropped = 0
+    while True:
+        try:
+            t_audio_q.get_nowait()
+            dropped += 1
+        except Empty:
+            break
+
+    if dropped:
+        logger.debug("Dropped %s stale audio blocks", dropped)
 
 def start_transcribing(model):
     block_samples = int(SAMPLE_RATE_HZ * BLOCK_SEC)
@@ -31,13 +44,14 @@ def start_transcribing(model):
     since_last_decode = 0
     committed_text = ""
     last_partial_text = ""
-    last_partial_words = []
+    max_partial_words_len = 0
     st_window = []
 
     speech_started = False
     no_new_words_samples = 0
     total_listen_samples = 0
 
+    clear_t_audio_q()
     logger.info("Listening to transcribe...")
     with sd.InputStream(
         samplerate=SAMPLE_RATE_HZ,
@@ -83,10 +97,10 @@ def start_transcribing(model):
             )
 
             partial_words = extract_step_words(segments)
-            if partial_words and partial_words != last_partial_words:
+            if partial_words and len(partial_words) > max_partial_words_len:
                 partial_text = " ".join(getattr(segment, "text", "").strip() for segment in segments).strip()
                 last_partial_text = partial_text if partial_text else " ".join(partial_words)
-                last_partial_words = partial_words
+                max_partial_words_len = len(partial_words)
                 speech_started = True
                 no_new_words_samples = 0
 
@@ -98,6 +112,7 @@ def start_transcribing(model):
             )
             if new_committed_text != committed_text:
                 committed_text = new_committed_text
+                max_partial_words_len = max(max_partial_words_len, len(committed_text.split()))
                 speech_started = True
                 no_new_words_samples = 0
                 if new_chunk:

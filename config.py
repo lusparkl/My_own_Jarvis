@@ -26,19 +26,16 @@ SYSTEM_PROMT = (
     "Use plain text only: no markdown, no asterisks, no bullet points, no emojis, no extra blank lines. "
     "Keep replies short, direct, and informative. "
     "When math or symbols appear, rewrite them in words (for example: x squared, divided by, plus, minus, equals)."
+    "Don't use emojis."
 )
 MEMORY_DB_PATH="D:/tech_stuff/coding/Jarvis_Memory"
 COLLECTION_NAME="chat_history"
 SUMMARIZING_PROMT=("Describe the following conversation using only 3 keywords separated by a comma (for example: 'finance, volatility, stocks').")
 
 #TTS
-CHECKPOINT_DIR="C:/Users/flypy/AppData/Local/tts/tts_models--multilingual--multi-dataset--xtts_v2"
+XTTS_MODEL="xtts_v2"
 REFERENCE_WAVS = ["D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_0.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_1.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_2.wav", "D:/tech_stuff/coding/ai_models/jarvis_voice_examples/jarvis_example_3.wav"]
 LANGUAGE="en"
-USE_DEEPSPEED=False
-XTTS_CONFIG_JSON=f"{CHECKPOINT_DIR}/config.json"
-LATENTS_CACHE="audio/output/speaker_latents.pt"
-OUTPUT_WAV="xtts_streaming.wav"
 CHUNKS_CHAR_LIMIT=250
 XTTS_DEVICE="cuda"
 

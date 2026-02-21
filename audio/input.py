@@ -1,4 +1,8 @@
-from audio.input.audio_queues import t_audio_q, w_audio_q
+from queue import Queue
+
+t_audio_q = Queue()
+w_audio_q = Queue()
+
 
 def t_audio_callback(indata, frames, time, status):
     if status:
