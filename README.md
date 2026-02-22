@@ -6,6 +6,7 @@ This project is my recreation of the J.A.R.V.I.S from "Iron Man" movie. He can l
 
 * Weather fetching
 * Keyboard interactions(read and copy stuff to your clipboard)
+* Create and edit todos
 
 More coming soon!
 
