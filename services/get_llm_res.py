@@ -1,6 +1,7 @@
 from tools.memory import retrieve_memory
 from tools.weather import get_current_weather, get_forecast
 from tools.keyboard import paste_from_user_keyboard, copy_to_user_keyboard
+from tools.todo import add_todo, get_todos, delete_todo
 from ollama import chat
 from ollama import ChatResponse
 import config
@@ -10,7 +11,10 @@ available_functions = {
     "get_current_weather": get_current_weather,
     "get_forecast": get_forecast,
     "copy_to_user_keyboard": copy_to_user_keyboard,
-    "paste_from_user_keyboard": paste_from_user_keyboard
+    "paste_from_user_keyboard": paste_from_user_keyboard,
+    "add_todo": add_todo,
+    "get_todos": get_todos,
+    "delete_todo": delete_todo
 }
 
 MEMORY_BEHAVIOR_GUARD = {
@@ -41,7 +45,7 @@ def get_llm_responce(messages) -> str:
             "model": config.GPT_MODEL,
             "messages": request_messages,
             "keep_alive": "-1m",
-            "tools": [retrieve_memory, get_current_weather, get_forecast, copy_to_user_keyboard, paste_from_user_keyboard],
+            "tools": [retrieve_memory, get_current_weather, get_forecast, copy_to_user_keyboard, paste_from_user_keyboard, add_todo, delete_todo, get_todos],
             "think": True
         }
 
