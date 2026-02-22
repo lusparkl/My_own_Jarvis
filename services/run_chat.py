@@ -1,6 +1,6 @@
 from services.transcribe import start_transcribing
 from services.get_llm_res import get_llm_responce
-from services.memorize import save_chat
+from tools.memory import save_chat
 from services.play_responce import dub_and_play_responce
 from audio.output import play_placeholder_sound
 from audio.utils import pick_random_placeholder_sound

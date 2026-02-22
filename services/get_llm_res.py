@@ -1,10 +1,13 @@
-from services.memorize import retrieve_memory
+from tools.memory import retrieve_memory
+from tools.weather import get_current_weather, get_forecast
 from ollama import chat
 from ollama import ChatResponse
 import config
 
 available_functions = {
-    "retrieve_memory": retrieve_memory
+    "retrieve_memory": retrieve_memory,
+    "get_current_weather": get_current_weather,
+    "get_forecast": get_forecast
 }
 
 MEMORY_BEHAVIOR_GUARD = {
@@ -35,8 +38,8 @@ def get_llm_responce(messages) -> str:
             "model": config.GPT_MODEL,
             "messages": request_messages,
             "keep_alive": "-1m",
-            "tools": [retrieve_memory],
-            "think": True,
+            "tools": [retrieve_memory, get_current_weather, get_forecast],
+            "think": True
         }
 
         response: ChatResponse = chat(
@@ -47,7 +50,7 @@ def get_llm_responce(messages) -> str:
 
         if response.message.tool_calls:
             tool_rounds += 1
-            if tool_rounds > 2:
+            if tool_rounds > 5:
                 return (response.message.content or "").strip()
 
             had_new_tool_result = False
