@@ -1,12 +1,48 @@
-# Jarvis
-- Now we have almost everything that we need for Jarvis, now I need to put it all together. I need to work on our bot memorizing our convos, so he'll be like real Jarvis. And last thing is how to end conversations, I don't want to do it on keyword cuz it's either some frequently usable or some cringe word, may be I'll make it as a tool, so Jarvis will end them by himself, or end them after 30 seconds of silence.
-- After everything that I wrote higher will come true I'll put all parts together and start on preparing for shiping this 0.1 version, but after this there will be tons of work on modifying it, so this project will be really long term.
+# Jarvis. Fully local AI assistant.
 
-# Future Ideas
-## It's block, where I'm writing all ideas that I'll probably add for Jarvis in the future.
-- Full control on my Spotify: He would act like my music assistant, I want to give him tools for that and also context to understand my music taste, so something like "Hey Jarvis, I want to listen to some calm music" would be real.
-- Weather and Google maps access. I want him to be like and real assistant, so he must understand what the weather is outside or what it'll be in few days. The same is with trafic.
-- Brainshtorming sessions: I want for him to make a separeted context sessions specially for some topics, and then to move freely between them. So for example I can discuss with him some project and then after few weeks move back to this discussion and he'll have perfect context about it.
-- Smart home controls: Now I'm learning electronics and arduino stuff, so it would be good to mix it up with Jarvis, so something like "Hey Jarvis, turn on the lights" would be real
-- Coding skills: Of course I understand that local AI model would be terrible at coding, but I think Jarvis would be pretty good for promt engineering. I want to give him access to the chatgpt codex, so he'll be able to give promts for this. Ai that drives Ai, crazy hahahah.
-- News access: must be pretty easy, just connect him to the news api.
+## Fully functional, but still unfinished AI assistant written on Python thats works on your PC!
+
+This project is my recreation of the J.A.R.V.I.S from "Iron Man" movie. He can listen, think, speak, memorize and most important use ANY tools you provide him. Currently I already wrote tools like:
+
+* Weather fetching
+* Keyboard interactions(read and copy stuff to your clipboard)
+
+More coming soon!
+
+## Check it out!
+
+Place for vid, I'll update it when create first ship!
+
+## Main libraries I used to build Jarvis:
+
+* (ollama)[https://github.com/ollama/ollama-python]
+* (coqui-ai-TTS)[https://github.com/idiap/coqui-ai-TTS]
+* (faster whisper)[https://github.com/SYSTRAN/faster-whisper]
+* (chroma)[https://github.com/chroma-core/chroma]
+* (sounddevice)[https://github.com/spatialaudio/python-sounddevice]
+* (openwakeword)[https://github.com/dscripka/openWakeWord]
+
+**Many thanks to the devs!!**
+
+## How to install Jarvis to your PC
+
+Now the only way is to copy this repo and then to play with it for few hours:/
+
+But soon enought I'll start on working on the tutorial and may be even load Jarvis to some platform that will allow you to download him without any head aches.
+
+
+## How to tweak this project for your own uses
+
+Since I'm trying to write modular project It'll be easy to change modules as you want. You can completly change tts model or even switch to some api(what I'll totaly understand, because it might be really slow on weak PC's). 
+
+But the easisest way - add your tools. You can write tools that YOU really need, and I'm sure that there will be some, because I'm writing only tools that almost everyone needs. Now to add your tool you need:
+1. Create your file or write code in existing if theme is the same in the /tools
+2. Write your tool function that AI will use, you can use my functions as examples. And don't forget about commenting your function so AI will understand what it's for!!
+3. Import your funcion to the /services/get_llm_res.py and add it to the "available_functions" and "tools"
+
+Your tool is now working!
+
+## Find a bug?
+
+I'm sure that next few weeks this project will be all in bugs because I haven't even tested it perciselly by myself, only short conversations. So if you found a bug, please submit an issue using the issues tab above. I'll try to fix all issues as fast as possible!
+
