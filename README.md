@@ -15,12 +15,12 @@ Place for vid, I'll update it when create first ship!
 
 ## Main libraries I used to build Jarvis:
 
-* (ollama)[https://github.com/ollama/ollama-python]
-* (coqui-ai-TTS)[https://github.com/idiap/coqui-ai-TTS]
-* (faster whisper)[https://github.com/SYSTRAN/faster-whisper]
-* (chroma)[https://github.com/chroma-core/chroma]
-* (sounddevice)[https://github.com/spatialaudio/python-sounddevice]
-* (openwakeword)[https://github.com/dscripka/openWakeWord]
+* (ollama)[[https://github.com/ollama/ollama-python]]
+* (coqui-ai-TTS)[[https://github.com/idiap/coqui-ai-TTS]]
+* (faster whisper)[[https://github.com/SYSTRAN/faster-whisper]]
+* (chroma)[[https://github.com/chroma-core/chroma]]
+* (sounddevice)[[https://github.com/spatialaudio/python-sounddevice]]
+* (openwakeword)[[https://github.com/dscripka/openWakeWord]]
 
 **Many thanks to the devs!!**
 
